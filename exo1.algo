@@ -1,0 +1,51 @@
+PROCEDURE dot_product(v1[n], v2[n], ps: FLOAT)
+VAR
+    i:INTEGER
+BEGIN
+    ps := 0
+    IF (v1[n]<>v2[n]) THEN
+        write("leurs longueurs ne sont pas identique !")
+    ELSE
+        FOR i FROM 0 TO (n-1) STEP 1 DO
+            ps := ps + (v1[i] * v2[i])
+        END_FOR
+    END_IF
+END
+
+
+ALGORITHM DetermineOrthogonalVectors
+VAR
+    n: INTEGER //nombre de paires de vecteurs
+    v[n]: FLOAT //chaque paire représente deux vecteurs
+    res[n]: BOOLEAN
+    i: entier
+    ps: FLOAT
+BEGIN
+     read n  // Demander le nombre de paires de vecteurs
+
+    // Lire les vecteurs pour chaque paire
+    FOR i FROM 0 TO (n-1) STEP 1  DO
+        write("Pour la paire de vecteurs ", i)
+        read v1[i], v2[i]
+    END_FOR
+
+    // Déterminer si chaque paire de vecteurs est orthogonale
+    FOR i FROM 0 TO (n-1) STEP 1  DO
+        dot_product(v1[n], v2[n], ps: FLOAT)
+        IF (ps = 0) THEN
+            res[i] := true
+        ELSE
+            res[i] := false
+        END_IF
+    END_FOR
+    
+    // Afficher les résultats
+    write("Résultats :")
+    FOR i FROM 0 TO (n-1) STEP 1  DO
+        IF (res[i]) THEN
+            write("La paire de vecteurs ", i, " est orthogonale.")
+        ELSE
+            write("La paire de vecteurs ", i, " n'est pas orthogonale.")
+        END_IF
+    END_FOR
+END

@@ -1,0 +1,35 @@
+PROCEDURE somme_elts_iden_distant(parameters)
+VAR
+   En1[0,n], En2[0,n], som1, som2, i, j: INTEGER
+BEGIN
+    som1:=0 // initialisation
+    som2:=0
+    FOR i FROM 0 TO (n-1) STEP 1  DO // ce pour le premier tab
+        FOR j FROM 0 TO (n-1) STEP   DO //ce pour le deuxieme tab
+            IF (En1[i]==En2[j]) THEN // si le contenut du tab1 est egale à tab2
+                som1:=som1+i //somme1 recevera cette valleur et va l'addition avec le suivant identique
+            ELSE // dans le cas ou les valeurs sont differants 
+                som2:=som2+i // c'est somme2 qui refaire les mêmes instructions que somme1
+            END_IF
+        END_FOR
+    END_FOR
+END
+
+
+FUNCTION somme_elts_iden_distant(parameters) : INTEGER
+VAR
+    En1[0,n], En2[0,n], som1, som2, i, j: INTEGER
+BEGIN
+    som1:=0
+    som2:=0
+    FOR i FROM 0 TO (n-1) STEP 1  DO
+        FOR j FROM 0 TO (n-1) STEP   DO
+            IF (En1[i]==En2[j]) THEN
+                som1:=som1+i
+            ELSE
+                som2:=som2+i
+            END_IF
+        END_FOR
+    END_FOR
+    RETURN som1, som2 ;
+END
